@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+}
+
+:root {
+  --neon-clr: rgb(0, 255, 0);
+  --bg-clr: rgb(0, 10, 0);
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg-clr);
+  position: relative;
+  overflow: hidden;
+}
+
+/* button */
+.neon-button {
+  font-weight: 700;
+  font-size: 4rem;
+  display: inline-block;
+  color: var(--neon-clr);
+  border: var(--neon-clr) 0.25em solid;
+  border-radius: 2.5em;
+  background: transparent;
+  padding: 1em 2.2em;
+
+  text-shadow: 0 0 0.5em currentColor, 0 0 0.125em hsl(0 0% 100% / 0.45);
+  box-shadow: inset 0 0 0.5em var(--neon-clr), 0 0 0.5em var(--neon-clr);
+
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.neon-button span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.neon-button-effect:not(:focus):hover {
+  background: var(--neon-clr);
+  color: var(--bg-clr);
+  text-shadow: 0 0 0.15em #003000;
+}
+
+.neon-button-effect:not(:focus):hover::before {
+  opacity: 1;
+}
+
+.neon-button-effect:not(:focus):hover::after {
+  opacity: 0.5;
+}
+
+.neon-button-effect::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background: var(--neon-clr);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1.4em);
+  opacity: 0.6;
+}
+
+.neon-button-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 2.5em;
+  box-shadow: 0 0 2em 0.5em var(--neon-clr);
+  opacity: 0;
+  background-color: var(--neon-clr);
+  transition: opacity 0.1s linear;
+  z-index: -1;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--neon-clr);
+  text-shadow: 0 0 0.5em currentColor, 0 0 0.125em hsl(0 0% 100% / 0.45);
+  font-size: 4rem;
+  z-index: 99;
+}
+
+.text {
+  line-height: 0.6;
+  font-size: 3.6rem;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 767.98px) {
+  body {
+    min-height: 85vh;
+  }
+
+  .text {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .text {
+    font-size: 1.8rem;
+  }
+}
